@@ -1,11 +1,217 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Product — Simple Landing Page</title>
+  <meta name="description" content="A clean, responsive landing page built with only HTML & CSS." />
+  <style>
+    /* ---------- Reset & helpers ---------- */
+    :root{
+      --bg:#0f1724; /* deep slate */
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#6ee7b7; /* mint */
+      --accent-2:#60a5fa; /* blue */
+      --glass: rgba(255,255,255,0.04);
+      --radius:16px;
+      --max-width:1100px;
+      --shadow: 0 8px 30px rgba(2,6,23,0.6);
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg), #081024 120%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:48px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      margin:0 auto;
+    }
+
+    /* ---------- Header ---------- */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      margin-bottom:36px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .logo{
+      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#04263a;
+      box-shadow: 0 6px 18px rgba(96,165,250,0.08);
+      flex-shrink:0;
+    }
+
+    nav{display:flex;gap:16px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+    .btn{
+      display:inline-block;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:700;font-size:14px;
+    }
+    .btn-ghost{border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--muted)}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#04263a}
+
+    /* ---------- Hero ---------- */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:32px;
+      align-items:center;
+      margin-bottom:48px;
+    }
+
+    .hero-left h1{font-size: clamp(28px,4.8vw,44px);margin:0 0 12px}
+    .lead{color:var(--muted);font-size:16px;margin:0 0 20px;max-width:60ch}
+
+    .hero-cta{display:flex;gap:12px}
+
+    /* ---------- Card (mock product panel) ---------- */
+    .product-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;padding:20px;box-shadow:var(--shadow);backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .mock-media{
+      width:100%;height:220px;border-radius:10px;background:linear-gradient(135deg,#05203a, #06334c);
+      display:flex;align-items:center;justify-content:center;color:var(--accent-2);font-weight:700;font-size:18px;margin-bottom:14px
+    }
+
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .feature{background:var(--glass);padding:12px;border-radius:10px;text-align:center}
+    .feature b{display:block;margin-bottom:6px}
+
+    /* ---------- Sections ---------- */
+    section{margin-bottom:44px}
+
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+
+    /* ---------- Pricing ---------- */
+    .pricing{display:flex;gap:18px;flex-wrap:wrap}
+    .plan{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);width:220px}
+    .plan h3{margin:0 0 8px}
+    .price{font-size:22px;font-weight:800}
+
+    /* ---------- Footer ---------- */
+    footer{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.02)}
+    footer p{color:var(--muted);margin:0}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .product-card{margin-top:8px}
+      .grid-2{grid-template-columns:1fr}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .container{padding:0 12px}
+    }
+    @media (max-width:420px){
+      header{flex-direction:column;align-items:flex-start}
+      nav{order:2;width:100%;justify-content:space-between}
+      nav a{font-size:13px}
+      .features{grid-template-columns:1fr}
+      .plan{width:100%}
+    }
+
+    /* small utility */
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:700}
+
+  </style>
 </head>
 <body>
-    <h1>Welcome to Ajay website</h1>
+  <div class="container">
+    <header>
+      <a class="brand" href="#">
+        <div class="logo">A</div>
+        <div>
+          <div style="font-weight:800">Ajay</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">developer</div>
+        </div>
+      </a>
+
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-ghost" href="#">Log in</a>
+        <a class="btn btn-primary" href="#">Get started</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-left">
+          <div class="pill">New • 2025</div>
+          <h1>Ajay product experiences</h1>
+          <p class="lead">Ship faster with pre-built patterns, clean components, and a pixel-perfect design system. No frameworks — just plain HTML & CSS so you can adapt it to anything.</p>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#pricing">Start free</a>
+            <a class="btn btn-ghost" href="#features">See features</a>
+          </div>
+
+          <div style="margin-top:20px;color:var(--muted);font-size:14px">
+            <strong>Trusted by</strong> • Acme, Orion, Nova
+          </div>
+        </div>
+
+        <aside>
+          <div class="product-card">
+            <div class="mock-media">Product preview</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:800">Pro plan</div>
+                <div class="muted" style="font-size:13px">Ideal for teams</div>
+              </div>
+              <div style="text-align:right">
+                <div class="price">$12<span style="font-weight:600;font-size:12px">/mo</span></div>
+                <div class="muted" style="font-size:12px">Billed monthly</div>
+              </div>
+            </div>
+
+            <div class="features">
+              <div class="feature"><b>99.9%</b><span class="muted">Uptime</span></div>
+              <div class="feature"><b>1k+</b><span class="muted">Users</span></div>
+              <div class="feature"><b>24/7</b><span class="muted">Support</span></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>© <span id="year">2025</span> Product — All rights reserved</p>
+      <div class="muted">Made with ❤️ • HTML + CSS</div>
+    </footer>
+
+  </div>
+
+  <script>
+    // small JS only to update the year; remove if you want pure HTML/CSS without scripts
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
